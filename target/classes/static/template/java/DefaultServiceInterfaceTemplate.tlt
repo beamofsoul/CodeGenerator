@@ -1,0 +1,22 @@
+package ####PACKAGE####.####TEMPLATETYPE1####
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import ####ENTITYPATH####;
+import com.querydsl.core.types.Predicate;
+
+public interface ####ENTITY########TEMPLATETYPE0#### {
+
+	####ENTITY#### create(####ENTITY#### ####ENTITYSMALLCAPITAL####);
+	####ENTITY#### update(####ENTITY#### ####ENTITYSMALLCAPITAL####);
+	long delete(Long... ids);
+
+	Order findById(Long id);
+
+	List<####ENTITY####> findAll();
+	Page<####ENTITY####> findAll(Pageable pageable);
+	Page<####ENTITY####> findAll(Pageable pageable, Predicate predicate);
+}
