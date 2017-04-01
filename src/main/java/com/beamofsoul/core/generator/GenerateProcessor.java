@@ -63,7 +63,10 @@ public class GenerateProcessor extends AbstractProcessor {
 				
 				// 通过容器生成Java源文件
 				try {
-					container.generateCode();
+					if (container != null) {
+						container.generateCode();
+					}
+					
 				} catch (IOException e) {
 					error(null, e.getMessage());
 				}

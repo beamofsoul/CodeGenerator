@@ -1,4 +1,4 @@
-package ####PACKAGE####.####TEMPLATETYPE1####.####TEMPLATESTATUS1####
+package ####PACKAGE####.####TEMPLATETYPE1####.####TEMPLATESTATUS1####;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ import ####PACKAGE####.####INJECTTYPE1####.####ENTITY########INJECTTYPE0####;
 import ####PACKAGE####.####TEMPLATETYPE1####.####ENTITY########TEMPLATETYPE0####;
 import com.querydsl.core.types.Predicate;
 
-import lombok.NonNull;
-
 @Service("####ENTITYSMALLCAPITAL########TEMPLATETYPE0####")
 public class ####ENTITY########TEMPLATETYPE0########TEMPLATESTATUS0#### extends BaseAbstractServiceImpl implements ####ENTITY########TEMPLATETYPE0#### {
 
@@ -23,43 +21,43 @@ public class ####ENTITY########TEMPLATETYPE0########TEMPLATESTATUS0#### extends 
 	private ####ENTITY########INJECTTYPE0#### ####ENTITYSMALLCAPITAL########INJECTTYPE0####;
 
 	@Override
-	####ENTITY#### create(####ENTITY#### ####ENTITYSMALLCAPITAL####) {
+	public ####ENTITY#### create(####ENTITY#### ####ENTITYSMALLCAPITAL####) {
 		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.save(####ENTITYSMALLCAPITAL####);
 	}
 
 	@Override
-	Order update(Order order) {
-		####ENTITY#### original####ENTITY#### = ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findOne(####ENTITYSMALLCAPITAL####.getId();
+	public ####ENTITY#### update(####ENTITY#### ####ENTITYSMALLCAPITAL####) {
+		####ENTITY#### original####ENTITY#### = ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findOne(####ENTITYSMALLCAPITAL####.getId());
 		BeanUtils.copyProperties(####ENTITYSMALLCAPITAL####, original####ENTITY####);
-		####ENTITYSMALLCAPITAL########INJECTTYPE0####.save(original####ENTITY####);
+		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.save(original####ENTITY####);
 	}
 
 	@Override
 	@Transactional
-	long delete(Long... ids) {
-		####ENTITYSMALLCAPITAL########INJECTTYPE0####.deleteByIds(ids);
+	public long delete(Long... ids) {
+		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.deleteByIds(ids);
 	}
 
 	@Override
-	Order findById(Long id) {
+	public ####ENTITY#### findById(Long id) {
 		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findOne(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	List<####ENTITY####> findAll() {
+	public List<####ENTITY####> findAll() {
 		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	Page<####ENTITY####> findAll(Pageable pageable) {
+	public Page<####ENTITY####> findAll(Pageable pageable) {
 		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findAll(pageable);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	Page<####ENTITY####> findAll(Pageable pageable, Predicate predicate) {
+	public Page<####ENTITY####> findAll(Pageable pageable, Predicate predicate) {
 		return ####ENTITYSMALLCAPITAL########INJECTTYPE0####.findAll(predicate, pageable);
 	}
 }
