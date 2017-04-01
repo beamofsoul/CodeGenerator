@@ -27,7 +27,7 @@ loadPageableDataCallback = function(data) { //pagination-utils.js 获取完分�
  *****************************************************************************************/
 documentReady = function() { //pagination-utils.js 绑定所有表单单击(目的为提交表单)事件
 	$('#submitAdd').click(function() {
-		submitForm(validateForm('add',validateRules),'singleAdd','addForm',function(){$('#cancelAdd').click()});
+		submitForm(validateForm('add',validateRules),'singleAdd','addForm',function(){$('#closeAdd').click()});
 	});	
 	$('#submitUpdate').click(function() {
 		submitForm(validateForm('update',validateRules),'singleUpdate','updateForm',function(){$('#closeUpdate').click()},true);
@@ -155,7 +155,7 @@ function parseValuesOnEachRow(obj) {
 	return [obj.id,
 		obj.name,
 		obj.available ? '启用' : '弃用',
-		formatDate(obj.createDate,true),
-		formatDate(obj.modifyDate,true),
+		formatDate(obj.createDate),
+		formatDate(obj.modifyDate),
 		buttonsOnEachRow]
 }

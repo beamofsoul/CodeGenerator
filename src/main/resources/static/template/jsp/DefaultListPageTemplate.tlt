@@ -11,7 +11,7 @@
   </head>
   <body>
     <tags:subtitle primary="####ENTITY####管理" secondary="列表" hr="true" />
-    <tags:buttons security="####ENTITYSMALLCAPITAL####" search="true"/>
+    <tags:buttons security="####ENTITYSMALLCAPITAL####" />
     <div class="am-g">
       <div class="am-u-sm-12">
         <div id="tableContainer"></div>

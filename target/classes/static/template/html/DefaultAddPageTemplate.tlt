@@ -34,7 +34,7 @@
 	<hr>
     <div class="am-margin">
       <button type="button" class="am-btn am-btn-primary am-btn-xs" id="submitAdd">提交保存</button>
-      <button type="button" class="am-btn am-btn-primary am-btn-xs" id="cancelAdd" data-am-modal-close>放弃保存</button>
+      <button type="button" class="am-btn am-btn-primary am-btn-xs" id="closeAdd" data-am-modal-close>放弃保存</button>
     </div>
     
 	</form>
