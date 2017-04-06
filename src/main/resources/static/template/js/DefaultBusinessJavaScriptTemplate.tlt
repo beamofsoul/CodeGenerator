@@ -1,3 +1,7 @@
+//当前用户操作的行为 - add、update、delete等等
+var currentAction = null;
+//当前用户能够操作的所有行为
+var actions = {'add': {'key':'add','url':'singleAdd'},'update':{'key':'update','url':'singleUpdate'},'copy':{'key':'copy','url':'singleAdd'}};
 //初始化完毕后记录表单所有属性值，用于后期提交修改时判断表单属性值是否被修改
 var initializedFormData = {};
 //tableContainer中表格显示列的中文名称
@@ -27,13 +31,16 @@ loadPageableDataCallback = function(data) { //pagination-utils.js 获取完分�
  *****************************************************************************************/
 documentReady = function() { //pagination-utils.js 绑定所有表单单击(目的为提交表单)事件
 	$('#submitAdd').click(function() {
-		submitForm(validateForm('add',validateRules),'singleAdd','addForm',function(){$('#closeAdd').click()});
+		currentAction = actions.add;
+		submitForm(validateForm(currentAction.key,validateRules),function(){$('#closeAdd').click()});
 	});	
 	$('#submitUpdate').click(function() {
-		submitForm(validateForm('update',validateRules),'singleUpdate','updateForm',function(){$('#closeUpdate').click()},true);
+		currentAction = actions.update;
+		submitForm(validateForm(currentAction.key,validateRules),function(){$('#closeUpdate').click()});
 	});
 	$('#submitCopy').click(function() {
-		submitForm(validateForm('copy',validateRules),'singleAdd','copyForm',function(){$('#closeCopy').click()});
+		currentAction = actions.copy;
+		submitForm(validateForm(currentAction.key,validateRules),function(){$('#closeCopy').click()});
 	});
 	$('#closeUpdate').click(function() {doCheckAll(false)});
 	$('#closeCopy').click(function() {doCheckAll(false)});
@@ -46,17 +53,23 @@ initUpdateForm = function(obj) {initForm('update',obj)} //basic-button-utils.js
 initCopyForm = function(obj) {initForm('copy',obj)} //basic-button-utils.js
 
 /**
+ * 获取当前操作的表单对象
+ * @returns 当前表单JQuery对象
+ */
+function getCurrentForm() {
+	return $('#' + currentAction.key + 'Form');
+}
+
+/**
  * 提交表单
  * @param validateFormFunction - 保存数据之前需要验证表单的方法
  * @param url - 提交至后台的URL
- * @param formId - 提交的表单Id
  * @param callback - 保存成功后的回调方法
- * @param isByUpdate - 是否提交的是update表单
  */
-function submitForm(validateFormFunction,url,formId,callback,isByUpdate) {
+function submitForm(validateFormFunction,callback) {
 	if(validateFormFunction) { //最后要清空ADD与COPY FORM
-		saveData(url,formId,function(data){
-			fresh4NewData(data,function(){callback()},isByUpdate);
+		saveData(function(data){
+			fresh4NewData(data,function(){callback()});
 		});
 	}
 }
@@ -64,20 +77,20 @@ function submitForm(validateFormFunction,url,formId,callback,isByUpdate) {
 /**
  * 保存add、update或copy表单提交的数据
  * @param url - 提交至后台的URL
- * @param formId - 提交的表单Id
  * @param sucFunc - 保存成功后的回调方法
  */
-function saveData(url,formId,sucFunc) {
+function saveData(sucFunc) {
 	//在更新记录时判断表单数据是否更改
-	var savingFormData = $('#'+formId).serializeObject();
+	var savingFormData = $(getCurrentForm()).serializeObject();
 	if (JSON.stringify(savingFormData) != JSON.stringify(initializedFormData)) {
 		$.ajax({
 		    headers: {
 		        'Accept': 'application/json',
 		        'Content-Type': 'application/json'
 		    },
+		    cache: false,
 	        type: "POST",
-	        url: url,
+	        url: currentAction.url,
 	        data: formatNonstandardData2JSON(savingFormData),
 	        error: function(XMLHttpRequest, textStatus, errorThrown) {
 		        console.log(XMLHttpRequest.responseText);
@@ -95,11 +108,10 @@ function saveData(url,formId,sucFunc) {
  * 当用户操作完增加、修改或复制记录后对tableContainer中的数据进行更新
  * @param data - 更改后的数据
  * @param callback - 回调方法
- * @param isByUpdate - 是否是update后进入此方法
  */
-function fresh4NewData(data,callback,isByUpdate) {
+function fresh4NewData(data,callback) {
 	if (data != null) {
-		if (isByUpdate) {
+		if (currentAction == actions.update) {
 			$('table#dataTable').find('tr#'+data.updated.id)
 			.html(generateDefaultDataTableTd(
 					attributeNames,parseValuesOnEachRow(data.updated)));
@@ -131,6 +143,7 @@ function fresh4NewData(data,callback,isByUpdate) {
 	}
 	callback();
 }
+
 
 /**
  * 初始化update与copy表单，当用户打开此模态窗口时
