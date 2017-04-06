@@ -2,6 +2,8 @@ package com.beamofsoul.core.generator.template;
 
 import java.io.IOException;
 
+import com.beamofsoul.core.generator.util.StringUtils;
+
 /**
  * @ClassName DefaultListPageTemplate
  * @Description 默认列表页面模板类
@@ -20,7 +22,10 @@ public class DefaultListPageTemplate extends ListPageTemplate {
 	@Override
 	public String getGeneratedContent() {
 		templateContent = templateContent.replace("####ENTITY####", entityName);
-		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", (new StringBuilder()).append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString());
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString();
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", stringBuilder.toString());
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITALUNDERLINE####", StringUtils.formatHumpToUnderline(stringBuilder.toString()));
 		return templateContent;
 	}
 }

@@ -21,9 +21,9 @@
 
     <%@ include file="../include_list_required.html"%>
 
-    <%@ include file="admin_####ENTITYSMALLCAPITAL####_add.html"%>
-    <%@ include file="admin_####ENTITYSMALLCAPITAL####_update.html"%>
-    <%@ include file="admin_####ENTITYSMALLCAPITAL####_copy.html"%>
+    <%@ include file="admin_####ENTITYSMALLCAPITALUNDERLINE####_add.html"%>
+    <%@ include file="admin_####ENTITYSMALLCAPITALUNDERLINE####_update.html"%>
+    <%@ include file="admin_####ENTITYSMALLCAPITALUNDERLINE####_copy.html"%>
 
     <script src="${pageContext.request.contextPath }/static/js/business/####ENTITYSMALLCAPITAL####-biz.js"></script>
   </body>
