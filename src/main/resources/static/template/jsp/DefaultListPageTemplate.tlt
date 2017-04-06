@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
+<%@ include file="../include_admin_taglib.html"%>
 <!DOCTYPE HTML>
 <html class="no-js">
   <head>
