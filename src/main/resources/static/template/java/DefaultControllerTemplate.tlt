@@ -29,7 +29,7 @@ public class ####ENTITY########TEMPLATETYPE0#### extends BaseAbstractController 
 	@PreAuthorize("authenticated and hasPermission('####ENTITYSMALLCAPITAL####','####ENTITYSMALLCAPITAL####:list')")
 	@RequestMapping(value = "/adminList")
 	public String adminList() {
-		return "/####ENTITYSMALLCAPITAL####/admin_####ENTITYSMALLCAPITAL####_list";
+		return "/####ENTITYSMALLCAPITALUNDERLINE####/admin_####ENTITYSMALLCAPITALUNDERLINE####_list";
 	}
 	
 	@PreAuthorize("authenticated and hasPermission('####ENTITYSMALLCAPITAL####','####ENTITYSMALLCAPITAL####:add')")

@@ -22,10 +22,10 @@ public class DefaultListPageTemplate extends ListPageTemplate {
 	@Override
 	public String getGeneratedContent() {
 		templateContent = templateContent.replace("####ENTITY####", entityName);
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString();
-		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", stringBuilder.toString());
-		templateContent = templateContent.replace("####ENTITYSMALLCAPITALUNDERLINE####", StringUtils.formatHumpToUnderline(stringBuilder.toString()));
+		
+		String entitySmallCapital = (new StringBuilder()).append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString();
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", entitySmallCapital);
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITALUNDERLINE####", StringUtils.formatHumpToUnderline(entitySmallCapital));
 		return templateContent;
 	}
 }

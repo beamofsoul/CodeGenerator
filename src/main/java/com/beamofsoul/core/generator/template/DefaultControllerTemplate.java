@@ -2,6 +2,8 @@ package com.beamofsoul.core.generator.template;
 
 import java.io.IOException;
 
+import com.beamofsoul.core.generator.util.StringUtils;
+
 /**
  * @ClassName DefaultControllerTemplate
  * @Description 默认控制器模板类
@@ -28,7 +30,10 @@ public class DefaultControllerTemplate extends ControllerTemplate {
 		templateContent = templateContent.replace("####PACKAGE####", packagePath);
 		templateContent = templateContent.replace("####ENTITYPATH####", entityPath);
 		templateContent = templateContent.replace("####ENTITY####", entityName);
-		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", (new StringBuilder()).append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString());
+		
+		String entitySmallCapital = (new StringBuilder()).append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString();
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", entitySmallCapital);
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITALUNDERLINE####", StringUtils.formatHumpToUnderline(entitySmallCapital));
 		return templateContent;
 	}
 }
