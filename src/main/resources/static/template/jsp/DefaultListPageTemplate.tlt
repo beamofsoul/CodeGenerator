@@ -24,6 +24,6 @@
     <%@ include file="admin_####ENTITYSMALLCAPITALUNDERLINE####_update.html"%>
     <%@ include file="admin_####ENTITYSMALLCAPITALUNDERLINE####_copy.html"%>
 
-    <script src="${pageContext.request.contextPath }/static/js/business/####ENTITYSMALLCAPITAL####-biz.js"></script>
+    <script src="${pageContext.request.contextPath }/static/js/business/####ENTITYSMALLCAPITALUNDERLINE####-biz.js"></script>
   </body>
 </html>
