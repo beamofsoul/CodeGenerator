@@ -26,6 +26,7 @@ public class DefaultListPageTemplate extends ListPageTemplate {
 		String entitySmallCapital = (new StringBuilder()).append(Character.toLowerCase(entityName.charAt(0))).append(entityName.substring(1)).toString();
 		templateContent = templateContent.replace("####ENTITYSMALLCAPITAL####", entitySmallCapital);
 		templateContent = templateContent.replace("####ENTITYSMALLCAPITALUNDERLINE####", StringUtils.formatHumpToUnderline(entitySmallCapital));
+		templateContent = templateContent.replace("####ENTITYSMALLCAPITALDASH####", StringUtils.formatHumpToDash(entitySmallCapital));
 		return templateContent;
 	}
 }
